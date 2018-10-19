@@ -1,14 +1,35 @@
 {
   "name": "@ovh-ux/component-rollup-config",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "Extensible rollup configuration to build OVH components",
   "author": "OVH SAS",
   "license": "BSD-3-Clause",
+  "repository": "ovh-ux/component-rollup-config",
+  "keywords": [
+    "rollup",
+    "configuration",
+    "build",
+    "components",
+    "ovh"
+  ],
+  "main": "index.js",
   "scripts": {
     "test": "eslint --quiet .",
     "lint": "eslint --quiet --fix .",
     "version": "npx conventional-changelog-cli -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
     "postversion": "git push && git push --tags"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
   },
   "dependencies": {
     "@babel/core": "^7.1.2",
@@ -36,17 +57,5 @@
     "eslint-plugin-import": "^2.14.0",
     "husky": "^1.0.0",
     "lint-staged": "^7.3.0"
-  },
-  "lint-staged": {
-    "*.js": [
-      "eslint --fix",
-      "git add"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
   }
 }
