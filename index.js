@@ -27,7 +27,7 @@ module.exports = (opts = {}) => {
     input: opts.input,
     external: peerDeps.concat(opts.external || []),
     output: [{
-      file: `./dist/${distFileName}.js`,
+      file: `./dist/${distFileName}`,
       format: 'es',
       sourcemap: true,
     }],
