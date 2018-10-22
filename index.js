@@ -15,7 +15,7 @@ module.exports = (opts = {}) => {
   const peerDeps = Object.keys(packageConfig.peerDependencies || {});
   let { translationsRoot } = opts;
 
-  const distFileName = opts.dist ? opts.dist.filename : `${name(packageConfig.name) || path.basename(workingDir)}.js`;
+  const distFileName = opts.dist ? opts.dist.filename : `${name.base(packageConfig.name) || path.basename(workingDir)}.js`;
 
   if (!translationsRoot) {
     translationsRoot = fs.existsSync(path.resolve(process.cwd(), 'src'))
