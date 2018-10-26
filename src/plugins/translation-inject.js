@@ -16,10 +16,19 @@ module.exports = (opts = {}) => {
       const magicString = new MagicString(code);
       this.parse(code, {
         onComment: (block, text, start, end) => {
-          if (/@ovhTranslationsInject/.test(text)) {
-            const trads = _.chain(text).split(/\s+/).filter(t => t && !/@ovhTranslationsInject/.test(t)).value();
-            const inject = utils.injectTranslationImports(trads, id, subdirectory);
-            magicString.overwrite(start, end, `/* @ngInject */ ($translate, $q, asyncLoader) => { ${inject} }`);
+          const match = text.match(/@ngTranslationsInject(.*)/);
+          if (match) {
+            const trads = _.chain(match)
+              .get(1)
+              .split(/\s+/)
+              .filter(t => t && !/@ngTranslations?Inject/i.test(t))
+              .value();
+            if (trads && trads.length) {
+              const inject = utils.injectTranslationImports(trads, id, subdirectory);
+              magicString.overwrite(start, end, `/* @ngInject */ ($translate, $q, asyncLoader) => { ${inject} }`);
+            } else {
+              magicString.overwrite(start, end, 'angular.noop');
+            }
           }
         },
       });

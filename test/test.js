@@ -35,7 +35,6 @@ describe('plugins', () => {
         .head()
         .get('code')
         .value();
-      console.log(code);
       assert(code === 'export default {"foo":"Foo","bar":"Bar"};');
     });
   });
