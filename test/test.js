@@ -5,8 +5,7 @@ const hypothetical = require('rollup-plugin-hypothetical');
 const translationXML = require('../src/plugins/translation-xml');
 
 describe('plugins', () => {
-  const sample = {};
-
+  let bundleModules;
   describe('translation-xml', () => {
     before(() => rollup.rollup({
       input: './trad.xml',
@@ -25,13 +24,12 @@ describe('plugins', () => {
           include: '*.xml',
         }),
       ],
-    }).then((bundle) => {
-      sample.modules = bundle.modules;
+    }).then(({ modules }) => {
+      bundleModules = modules;
     }));
 
     it('should convert XML to JSON', () => {
-      const code = _.chain(sample)
-        .get('modules')
+      const code = _.chain(bundleModules)
         .head()
         .get('code')
         .value();
