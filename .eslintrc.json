@@ -2,8 +2,5 @@
   "extends": "airbnb-base",
   "env": {
     "mocha": true
-  },
-  "rules": {
-    "no-eval": 0
   }
 }
