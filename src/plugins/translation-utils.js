@@ -2,7 +2,27 @@ const _ = require('lodash');
 const fs = require('fs');
 const path = require('path');
 
-const languages = ['fr_FR', 'en_GB'];
+const languages = [
+  'cs_CZ',
+  'de_DE',
+  'en_ASIA',
+  'en_AU',
+  'en_CA',
+  'en_GB',
+  'en_SG',
+  'en_US',
+  'es_ES',
+  'es_US',
+  'fi_FI',
+  'fr_CA',
+  'fr_FR',
+  'it_IT',
+  'it_LT',
+  'nl_NL',
+  'pl_PL',
+  'pl_PT',
+];
+
 const normalizePath = p => (_.startsWith(p, '.') ? p : `./${p}`);
 
 const injectFallbackFunction = (trads, id, subdirectory) => {
@@ -60,4 +80,5 @@ const injectTranslationImports = (trads, id, subdirectory) => {
 module.exports = {
   normalizePath,
   injectTranslationImports,
+  languages: _.concat(languages),
 };

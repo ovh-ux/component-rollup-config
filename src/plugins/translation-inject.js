@@ -19,7 +19,7 @@ module.exports = (opts = {}) => {
           if (/@ovhTranslationsInject/.test(text)) {
             const trads = _.chain(text).split(/\s+/).filter(t => t && !/@ovhTranslationsInject/.test(t)).value();
             const inject = utils.injectTranslationImports(trads, id, subdirectory);
-            magicString.overwrite(start, end, `($translate, $q, asyncLoader) => { ${inject} }`);
+            magicString.overwrite(start, end, `/* @ngInject */ ($translate, $q, asyncLoader) => { ${inject} }`);
           }
         },
       });
