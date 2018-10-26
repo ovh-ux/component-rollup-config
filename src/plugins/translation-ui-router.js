@@ -47,8 +47,7 @@ module.exports = (opts = {}) => {
 
             if (translations.value()) {
               const resolve = _.chain(props)
-                .filter({ key: { name: 'resolve' } })
-                .filter({ type: 'Property' })
+                .filter({ key: { name: 'resolve' }, type: 'Property' })
                 .head()
                 .get('value.properties')
                 .last()
