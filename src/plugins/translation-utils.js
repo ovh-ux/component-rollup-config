@@ -66,16 +66,15 @@ const injectTranslationSwitch = (trads, id, subdirectory) => {
   return code;
 };
 
-const injectTranslationImports = (trads, id, subdirectory) => {
-  let code = 'let promises = [];';
-  code += 'const useFallback = () => {';
-  code += injectFallbackFunction(trads, id, subdirectory);
-  code += '};';
-  code += injectTranslationSwitch(trads, id, subdirectory);
-  code += 'promises.forEach(p => asyncLoader.addTranslations(p));';
-  code += 'return $q.all(promises).then(() => $translate.refresh());';
-  return code;
-};
+const injectTranslationImports = (trads, id, subdirectory) => `
+  let promises = [];
+  const useFallback = () => {
+    ${injectFallbackFunction(trads, id, subdirectory)}
+  };
+  ${injectTranslationSwitch(trads, id, subdirectory)}
+  promises.forEach(p => asyncLoader.addTranslations(p));
+  return $q.all(promises).then(() => $translate.refresh());
+`;
 
 module.exports = {
   normalizePath,
