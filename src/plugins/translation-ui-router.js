@@ -42,8 +42,7 @@ module.exports = (opts = {}) => {
               .get('properties')
               .value();
             const translations = _.chain(props)
-              .filter({ key: { name: 'translations' } })
-              .filter({ type: 'Property' })
+              .filter({ key: { name: 'translations' }, type: 'Property' })
               .head();
 
             if (translations.value()) {
@@ -51,8 +50,7 @@ module.exports = (opts = {}) => {
                 .filter({ key: { name: 'resolve' } })
                 .filter({ type: 'Property' })
                 .head()
-                .get('value')
-                .get('properties')
+                .get('value.properties')
                 .last()
                 .value();
               let inject = utils.injectTranslationImports(

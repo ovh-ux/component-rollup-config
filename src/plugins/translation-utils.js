@@ -30,8 +30,9 @@ const injectFallbackFunction = (trads, id, subdirectory) => {
   languages.forEach((lang) => {
     code += `case '${lang}':`;
     trads.forEach((trad) => {
-      const fullTradPath = path.resolve(path.dirname(id), trad, subdirectory);
-      const relativePath = path.relative(path.dirname(id), fullTradPath);
+      const dirname = path.dirname(id);
+      const fullTradPath = path.resolve(dirname, trad, subdirectory);
+      const relativePath = path.relative(dirname, fullTradPath);
       if (fs.existsSync(path.join(fullTradPath, `Messages_${lang}.xml`))) {
         const toImport = normalizePath(path.join(relativePath, `Messages_${lang}.xml`));
         code += `promises.push(import('${toImport}').then(module => module.default));`;
@@ -49,8 +50,9 @@ const injectTranslationSwitch = (trads, id, subdirectory) => {
     let importFound = 0;
     code += `case '${lang}':`;
     trads.forEach((trad) => {
-      const fullTradPath = path.resolve(path.dirname(id), trad, subdirectory);
-      const relativePath = path.relative(path.dirname(id), fullTradPath);
+      const dirname = path.dirname(id);
+      const fullTradPath = path.resolve(dirname, trad, subdirectory);
+      const relativePath = path.relative(dirname, fullTradPath);
       if (fs.existsSync(path.join(fullTradPath, `Messages_${lang}.xml`))) {
         const toImport = normalizePath(path.join(relativePath, `Messages_${lang}.xml`));
         code += `promises.push(import('${toImport}').then(module => module.default));`;
