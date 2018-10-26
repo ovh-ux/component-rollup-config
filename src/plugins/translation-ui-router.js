@@ -69,12 +69,7 @@ module.exports = (opts = {}) => {
               if (resolve) {
                 magicString.appendRight(resolve.end, `,${inject}`);
               } else {
-                const firstProp = _.chain(node)
-                  .get('arguments')
-                  .get(1)
-                  .get('properties')
-                  .first()
-                  .value();
+                const firstProp = _(node).get('arguments[1].properties[0]');
                 inject = `resolve: { ${inject} },`;
                 magicString.appendLeft(firstProp.start, inject);
               }
