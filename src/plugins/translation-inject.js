@@ -18,12 +18,12 @@ module.exports = (opts = {}) => {
         onComment: (block, text, start, end) => {
           const match = text.match(/@ngTranslationsInject(.*)/);
           if (match) {
-            const trads = _.chain(match)
+            const translations = _.chain(match)
               .get(1)
               .split(/\s+/)
               .value();
-            if (trads && trads.length) {
-              const inject = utils.injectTranslationImports(trads, id, subdirectory);
+            if (_(translations).isArray() && !_(translations).isEmpty()) {
+              const inject = utils.injectTranslationImports(translations, id, subdirectory);
               magicString.overwrite(start, end, `/* @ngInject */ ($translate, $q, asyncLoader) => { ${inject} }`);
             } else {
               magicString.overwrite(start, end, 'angular.noop');

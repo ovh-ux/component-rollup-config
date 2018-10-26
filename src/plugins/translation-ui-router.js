@@ -41,12 +41,12 @@ module.exports = (opts = {}) => {
               .last()
               .get('properties')
               .value();
-            const trads = _.chain(props)
+            const translations = _.chain(props)
               .filter({ key: { name: 'translations' } })
               .filter({ type: 'Property' })
               .head();
 
-            if (trads.value()) {
+            if (translations.value()) {
               const resolve = _.chain(props)
                 .filter({ key: { name: 'resolve' } })
                 .filter({ type: 'Property' })
@@ -55,9 +55,20 @@ module.exports = (opts = {}) => {
                 .get('properties')
                 .last()
                 .value();
-              let inject = utils.injectTranslationImports(trads.get('value.elements').map('value').value(), id, subdirectory);
+              let inject = utils.injectTranslationImports(
+                translations
+                  .get('value.elements')
+                  .map('value')
+                  .value(),
+                id,
+                subdirectory,
+              );
+
               inject = `translations: ($q, $translate, asyncLoader) => { ${inject} }`;
-              removeProperty(code, magicString, trads.value().start, trads.value().end);
+
+              removeProperty(code, magicString,
+                translations.value().start, translations.value().end);
+
               if (resolve) {
                 magicString.appendRight(resolve.end, `,${inject}`);
               } else {
