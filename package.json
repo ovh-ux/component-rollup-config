@@ -14,7 +14,7 @@
   ],
   "main": "./src/index.js",
   "scripts": {
-    "test": "eslint --quiet .",
+    "test": "eslint --quiet . && mocha",
     "lint": "eslint --quiet --fix .",
     "version": "npx conventional-changelog-cli -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
     "postversion": "git push && git push --tags"
@@ -57,6 +57,8 @@
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
     "husky": "^1.0.0",
-    "lint-staged": "^7.3.0"
+    "lint-staged": "^7.3.0",
+    "mocha": "^5.2.0",
+    "rollup-plugin-hypothetical": "^2.1.0"
   }
 }
