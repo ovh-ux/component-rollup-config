@@ -21,7 +21,6 @@ module.exports = (opts = {}) => {
             const trads = _.chain(match)
               .get(1)
               .split(/\s+/)
-              .filter(t => t && !/@ngTranslations?Inject/i.test(t))
               .value();
             if (trads && trads.length) {
               const inject = utils.injectTranslationImports(trads, id, subdirectory);
