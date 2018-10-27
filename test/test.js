@@ -12,12 +12,12 @@ describe('plugins', () => {
       plugins: [
         hypothetical({
           files: {
-            './trad.xml': '<translations>'
-                        + '<translation id="foo" qtlid="1">Foo</translation>'
-                        + '<translation id="bar" qtlid="2">Bar</translation>'
-                        + '<translation>Missing id</translation>'
-                        + '<translation id="missingContent"></translation>'
-                        + '</translations>',
+            './trad.xml': `<translations>
+              <translation id="foo" qtlid="1">Foo</translation>
+              <translation id="bar" qtlid="2">Bar</translation>
+              <translation>Missing id</translation>
+              <translation id="missingContent"></translation>
+            </translations>`,
           },
         }),
         translationXML({
