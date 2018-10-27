@@ -2,6 +2,8 @@
 
 > Extensible rollup configuration to build OVH components
 
+[![Downloads](https://badgen.net/npm/dt/@ovh-ux/component-rollup-config)](https://npmjs.com/package/@ovh-ux/component-rollup-config) [![Publish size](https://badgen.net/packagephobia/publish/@ovh-ux/component-rollup-config)](https://npmjs.com/package/@ovh-ux/component-rollup-config) [![Dependencies](https://badgen.net/david/dep/ovh-ux/component-rollup-config)](https://npmjs.com/package/@ovh-ux/component-rollup-config?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/component-rollup-config)](https://npmjs.com/package/@ovh-ux/component-rollup-config?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+
 ## Install
 
 ```sh
