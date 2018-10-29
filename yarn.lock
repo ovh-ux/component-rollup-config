@@ -293,15 +293,6 @@
     mkdirp "^0.5.1"
     rimraf "^2.5.2"
 
-"@ovh-ux/translations-build-tools@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/translations-build-tools/-/translations-build-tools-1.0.0.tgz#318af155edbe4e758c67554582f3683b787cfb0f"
-  integrity sha512-lbmAHGh9x2o5i72fdWLXQoFs7QRQNSmbDKLXibALHR5f3YGXdHgQrPddcNugB8ElXe7xlX2Rf59IakLuj4R20g==
-  dependencies:
-    loader-utils "^1.1.0"
-    lodash "^4.17.11"
-    rollup-pluginutils "^2.3.3"
-
 "@samverschueren/stream-to-observable@^0.3.0":
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/@samverschueren/stream-to-observable/-/stream-to-observable-0.3.0.tgz#ecdf48d532c58ea477acfcab80348424f8d0662f"
@@ -2835,15 +2826,6 @@ loader-utils@^0.2.16:
     emojis-list "^2.0.0"
     json5 "^0.5.0"
     object-assign "^4.0.1"
-
-loader-utils@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/loader-utils/-/loader-utils-1.1.0.tgz#c98aef488bcceda2ffb5e2de646d6a754429f5cd"
-  integrity sha1-yYrvSIvM7aL/teLeZG1qdUQp9c0=
-  dependencies:
-    big.js "^3.1.3"
-    emojis-list "^2.0.0"
-    json5 "^0.5.0"
 
 locate-path@^2.0.0:
   version "2.0.0"
