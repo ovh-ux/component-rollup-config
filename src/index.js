@@ -8,7 +8,7 @@ const translationInject = require('./plugins/translation-inject');
 const translationUiRouter = require('./plugins/translation-ui-router');
 const translationXML = require('./plugins/translation-xml');
 
-module.exports = (opts = {}) => [{
+const config = (opts = {}) => [{
   experimentalCodeSplitting: true,
   input: opts.input,
   output: [{
@@ -37,3 +37,11 @@ module.exports = (opts = {}) => [{
     }),
   ],
 }];
+
+config.plugins = {
+  translationInject,
+  translationUiRouter,
+  translationXML,
+};
+
+module.exports = config;

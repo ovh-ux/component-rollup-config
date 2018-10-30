@@ -1,6 +1,6 @@
 const _ = require('lodash');
 const { createFilter } = require('rollup-pluginutils');
-const parser = require('xml2json');
+const parser = require('fast-xml-parser');
 
 module.exports = (opts = {}) => {
   const include = opts.include || '**/Messages_*.xml';
@@ -12,7 +12,12 @@ module.exports = (opts = {}) => {
       if (!filter(id)) return null;
       let parsed;
       try {
-        parsed = JSON.parse(parser.toJson(code));
+        parsed = parser.parse(code, {
+          textNodeName: '#text',
+          ignoreAttributes: false,
+          parseNodeValue: true,
+          parseAttributeValue: true,
+        });
       } catch (err) {
         err.message += ` in ${id}`;
         throw err;
@@ -20,8 +25,8 @@ module.exports = (opts = {}) => {
       const translations = _.chain(parsed)
         .get('translations.translation')
         .concat()
-        .keyBy('id')
-        .mapValues('$t')
+        .keyBy('@_id')
+        .mapValues('#text')
         .value();
       return {
         code: `export default ${JSON.stringify(translations)};`,
