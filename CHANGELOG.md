@@ -1,3 +1,19 @@
+<a name="2.1.0"></a>
+# [2.1.0](https://github.com/ovh-ux/component-rollup-config/compare/v2.0.0...v2.1.0) (2018-10-30)
+
+
+### Bug Fixes
+
+* **deps:** remove translations-build-tools dependency ([f63435f](https://github.com/ovh-ux/component-rollup-config/commit/f63435f))
+* replace xml2json with fast-xml-parser ([ce974b0](https://github.com/ovh-ux/component-rollup-config/commit/ce974b0))
+
+
+### Features
+
+* export plugins ([f48d4fb](https://github.com/ovh-ux/component-rollup-config/commit/f48d4fb))
+
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/ovh-ux/component-rollup-config/compare/v1.1.2...v2.0.0) (2018-10-26)
 
