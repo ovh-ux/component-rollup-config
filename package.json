@@ -24,6 +24,7 @@
     "@babel/plugin-syntax-dynamic-import": "^7.0.0",
     "babel-plugin-angularjs-annotate": "^0.9.0",
     "estree-walker": "^0.5.2",
+    "fast-xml-parser": "^3.12.5",
     "lodash": "^4.17.11",
     "magic-string": "^0.25.1",
     "rollup": "^0.66.6",
@@ -34,8 +35,7 @@
     "rollup-plugin-node-resolve": "^3.4.0",
     "rollup-plugin-peer-deps-external": "^2.2.0",
     "rollup-plugin-postcss": "^1.6.2",
-    "rollup-pluginutils": "^2.3.3",
-    "xml2json": "^0.11.2"
+    "rollup-pluginutils": "^2.3.3"
   },
   "devDependencies": {
     "@commitlint/cli": "^7.1.2",
