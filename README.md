@@ -13,7 +13,7 @@ yarn add -D @ovh-ux/component-rollup-config
 ## Usage
 
 ```js
-import config from 'component-rollup-config';
+import config from '@ovh-ux/component-rollup-config';
 
 export default config({
   input: 'src/index.js'
