@@ -35,7 +35,8 @@
     "rollup-plugin-node-resolve": "^3.4.0",
     "rollup-plugin-peer-deps-external": "^2.2.0",
     "rollup-plugin-postcss": "^1.6.2",
-    "rollup-pluginutils": "^2.3.3"
+    "rollup-pluginutils": "^2.3.3",
+    "slash": "^2.0.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^7.1.2",
