@@ -16,10 +16,11 @@ module.exports = (opts = {}) => {
   const include = opts.include || '**/Messages_*.xml';
   const { exclude } = opts;
   const filter = createFilter(include, exclude);
+  const filtering = opts.filtering !== false;
   return {
     name: 'translation-xml-import',
     transform(code, id) {
-      if (!filter(id)) return null;
+      if (filtering && !filter(id)) return null;
       let parsed;
       try {
         parsed = parser.parse(code, {

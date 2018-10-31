@@ -23,10 +23,11 @@ module.exports = (opts = {}) => {
   const filter = createFilter(include, exclude);
   const sourcemap = opts.sourcemap !== false;
   const subdirectory = opts.subdirectory || './';
+  const filtering = opts.filtering !== false;
   return {
     name: 'translation-ui-router',
     transform(code, id) {
-      if (!filter(id)) return null;
+      if (filtering && !filter(id)) return null;
       const ast = this.parse(code);
       const magicString = new MagicString(code);
       walk(ast, {
