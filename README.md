@@ -1,6 +1,6 @@
 # Component rollup config
 
-> Extensible rollup configuration to build OVH components
+> Extensible rollup configuration to build OVH components.
 
 [![Downloads](https://badgen.net/npm/dt/@ovh-ux/component-rollup-config)](https://npmjs.com/package/@ovh-ux/component-rollup-config) [![Publish size](https://badgen.net/packagephobia/publish/@ovh-ux/component-rollup-config)](https://npmjs.com/package/@ovh-ux/component-rollup-config) [![Dependencies](https://badgen.net/david/dep/ovh-ux/component-rollup-config)](https://npmjs.com/package/@ovh-ux/component-rollup-config?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/component-rollup-config)](https://npmjs.com/package/@ovh-ux/component-rollup-config?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
 
@@ -22,11 +22,11 @@ export default config({
 
 ## Plugins
 
-This configuration provides some plugins to facilitate loading and importing of ovh translations
+This configuration provides some plugins to facilitate loading and importing of ovh translations.
 
 ### translation-xml
 
-Convert translation XML files to JavaScript
+Convert translation XML files to JavaScript.
 
 ```xml
 <translations>
@@ -36,39 +36,52 @@ Convert translation XML files to JavaScript
 ```
 
 ```js
-export default {"foo":"Foo","bar":"Bar"};
+export default { foo: 'Foo', bar: 'Bar' };
 ```
 
 ### translation-ui-router
 
-Handle _translations_ property in ui-router state declaration to dynamically load ovh translations when state is resolved
+Handle `translations` property in ui-router state declaration to dynamically load ovh translations when state is resolved.
 
 ```js
+// will import `./translations` and `../common/translations` during ui-router state resolve
 $stateProvider.state('my-state', {
   url: 'some-template.html',
-  translations: ['.', '../common'], // will import ./translations and ../common/translations during ui-router state resolve
+  translations: ['.', '../common'],
 });
 ```
 
 ### translation-inject
 
-Handle _@ngTranslationsInject_ comment in order to facilitate dynamic import of ovh translations
+Handle `@ngTranslationsInject` comment in order to facilitate dynamic import of ovh translations.
 
 ```js
-angular.module('myModule', []).run(/* @ngTranslationsInject ./translations ../common/translations */);
+angular
+  .module('myModule', [])
+  .run(/* @ngTranslationsInject ./translations ../common/translations */);
 ```
 
 ```js
-angular.module('myModule', []).controller('myController', function ($injector) {
-  this.$onInit = function () {
+class MyController {
+  constructor($injector) {
+    'ngInject';
+
+    this.$injector = $injector;
+  }
+
+  $onInit() {
     this.isLoading = true;
-    $injector.invoke(
+    return this.$injector.invoke(
       /* @ngTranslationsInject ./translations ./some/other/path */
     ).finally(() => {
       this.isLoading = false;
     });
-  };
-});
+  }
+}
+
+angular
+  .module('myModule', [])
+  .controller('myController', MyController);
 ```
 
 ## Test
