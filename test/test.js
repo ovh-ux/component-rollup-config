@@ -15,6 +15,7 @@ describe('plugins', () => {
             './trad.xml': `<translations>
               <translation id="foo" qtlid="1">Foo</translation>
               <translation id="bar" qtlid="2">Bar</translation>
+              <translation id="hello" qtlid="3">Hello {0}</translation>
               <translation>Missing id</translation>
               <translation id="missingContent"></translation>
             </translations>`,
@@ -33,7 +34,7 @@ describe('plugins', () => {
         .head()
         .get('code')
         .value();
-      assert(code === 'export default {"foo":"Foo","bar":"Bar"};');
+      assert(code === 'export default {"foo":"Foo","bar":"Bar","hello":"Hello {{t0}}"};');
     });
   });
 });
