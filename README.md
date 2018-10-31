@@ -20,6 +20,57 @@ export default config({
 })
 ```
 
+## Plugins
+
+This configuration provides some plugins to facilitate loading and importing of ovh translations
+
+### translation-xml
+
+Convert translation XML files to JavaScript
+
+```xml
+<translations>
+  <translation id="foo" qtlid="1">Foo</translation>
+  <translation id="bar" qtlid="2">Bar</translation>
+</translations>
+```
+
+```js
+export default {"foo":"Foo","bar":"Bar"};
+```
+
+### translation-ui-router
+
+Handle _translations_ property in ui-router state declaration to dynamically load ovh translations when state is resolved
+
+```js
+$stateProvider.state('my-state', {
+  url: 'some-template.html',
+  translations: ['.', '../common'], // will import ./translations and ../common/translations during ui-router state resolve
+});
+```
+
+### translation-inject
+
+Handle _@ngTranslationsInject_ comment in order to facilitate dynamic import of ovh translations
+
+```js
+angular.module('myModule', []).run(/* @ngTranslationsInject ./translations ../common/translations */);
+```
+
+```js
+angular.module('myModule', []).controller('myController', function ($injector) {
+  this.$onInit = function () {
+    this.isLoading = true;
+    $injector.invoke(
+      /* @ngTranslationsInject ./translations ./some/other/path */
+    ).finally(() => {
+      this.isLoading = false;
+    });
+  };
+});
+```
+
 ## Test
 
 ```sh
