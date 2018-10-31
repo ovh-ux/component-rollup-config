@@ -1,3 +1,13 @@
+<a name="2.1.1"></a>
+## [2.1.1](https://github.com/ovh-ux/component-rollup-config/compare/v2.1.0...v2.1.1) (2018-10-31)
+
+
+### Bug Fixes
+
+* **translation-xml:** filter text ([7309f73](https://github.com/ovh-ux/component-rollup-config/commit/7309f73))
+
+
+
 <a name="2.1.0"></a>
 # [2.1.0](https://github.com/ovh-ux/component-rollup-config/compare/v2.0.0...v2.1.0) (2018-10-30)
 
