@@ -1,6 +1,7 @@
 const _ = require('lodash');
 const fs = require('fs');
 const path = require('path');
+const slash = require('slash');
 
 const languages = [
   'cs_CZ',
@@ -23,7 +24,7 @@ const languages = [
   'pl_PT',
 ];
 
-const normalizePath = p => (_.startsWith(p, '.') ? p : `./${p}`);
+const normalizePath = p => (_.startsWith(p, '.') ? slash(p) : `./${slash(p)}`);
 
 const injectFallbackFunction = (trads, id, subdirectory) => {
   let code = 'switch($translate.fallbackLanguage()) {';
