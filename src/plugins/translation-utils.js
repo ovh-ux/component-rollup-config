@@ -18,10 +18,10 @@ const languages = [
   'fr_CA',
   'fr_FR',
   'it_IT',
-  'it_LT',
+  'lt_LT',
   'nl_NL',
   'pl_PL',
-  'pl_PT',
+  'pt_PT',
 ];
 
 const normalizePath = p => (_.startsWith(p, '.') ? slash(p) : `./${slash(p)}`);
