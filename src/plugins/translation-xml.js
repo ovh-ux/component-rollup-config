@@ -4,9 +4,11 @@ const parser = require('fast-xml-parser');
 
 const filterText = (text) => {
   if (text) {
-    let filtered = text.replace(/&#13;\n/g, ' '); // carriage returns
-    filtered = filtered.replace(/&#160;/g, ' '); // spaces
-    filtered = filtered.replace(/\{(\s?\d\s?)\}/g, '{{t$1}}'); // {0} => {{t0}}
+    const filtered = text
+      .toString()
+      .replace(/&#13;\n/g, ' ') // carriage returns
+      .replace(/&#160;/g, ' ') // spaces
+      .replace(/\{(\s?\d\s?)\}/g, '{{t$1}}'); // {0} => {{t0}}
     return filtered;
   }
   return text;
