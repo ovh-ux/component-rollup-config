@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/component-rollup-config",
-  "version": "2.1.3",
+  "version": "2.1.4",
   "description": "Extensible rollup configuration to build OVH components",
   "author": "OVH SAS",
   "license": "BSD-3-Clause",

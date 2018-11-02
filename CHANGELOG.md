@@ -1,3 +1,13 @@
+## [2.1.4](https://github.com/ovh-ux/component-rollup-config/compare/v2.1.3...v2.1.4) (2018-11-02)
+
+
+### Bug Fixes
+
+* **plugins.translation-ui-router:** handle multiple state definition ([a601ad2](https://github.com/ovh-ux/component-rollup-config/commit/a601ad2))
+* **plugins.translation-utils:** set right languages ([dad4e6d](https://github.com/ovh-ux/component-rollup-config/commit/dad4e6d))
+
+
+
 ## [2.1.3](https://github.com/ovh-ux/component-rollup-config/compare/v2.1.2...v2.1.3) (2018-11-02)
 
 
