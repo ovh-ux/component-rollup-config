@@ -36,7 +36,7 @@ module.exports = (opts = {}) => {
             magicString.addSourcemapLocation(node.start);
             magicString.addSourcemapLocation(node.end);
           }
-          if (_.get(node, 'callee.object.name') === '$stateProvider') {
+          if (_.get(node, 'callee.property.name') === 'state') {
             const props = _.chain(node)
               .get('arguments')
               .last()
