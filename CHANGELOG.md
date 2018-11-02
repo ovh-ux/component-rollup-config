@@ -1,3 +1,13 @@
+## [2.1.3](https://github.com/ovh-ux/component-rollup-config/compare/v2.1.2...v2.1.3) (2018-11-02)
+
+
+### Bug Fixes
+
+* **normalizepath:** use slash lib to ensure no back slash on windows ([4d6562d](https://github.com/ovh-ux/component-rollup-config/commit/4d6562d))
+* **plugins.translations-xml:** apply toString if text is a number ([ecde964](https://github.com/ovh-ux/component-rollup-config/commit/ecde964))
+
+
+
 <a name="2.1.2"></a>
 ## [2.1.2](https://github.com/ovh-ux/component-rollup-config/compare/v2.1.1...v2.1.2) (2018-10-31)
 
