@@ -1,6 +1,5 @@
 const _ = require('lodash');
 const { createFilter } = require('rollup-pluginutils');
-const parser = require('fast-xml-parser');
 
 const filterText = (text) => {
   if (text) {
@@ -23,27 +22,14 @@ module.exports = (opts = {}) => {
     name: 'translation-xml-import',
     transform(code, id) {
       if (filtering && !filter(id)) return null;
-      let parsed;
-      try {
-        parsed = parser.parse(code, {
-          textNodeName: '#text',
-          ignoreAttributes: false,
-          parseNodeValue: true,
-          parseAttributeValue: true,
-        });
-      } catch (err) {
-        err.message += ` in ${id}`;
-        throw err;
+      const reg = /<translation\s+id="([\w-]+?)"\s*(qtlid="([0-9]+)")?\s*(?:translate="none")?\s*?>((?:.|\n|\r)*?)<\/translation>/gi;
+      const translations = {};
+      let match;
+      while (match = reg.exec(code)) { // eslint-disable-line no-cond-assign
+        _.set(translations, _.get(match, 1), _.get(match, 4, ''));
       }
-      const translations = _.chain(parsed)
-        .get('translations.translation')
-        .concat()
-        .keyBy('@_id')
-        .mapValues('#text')
-        .mapValues(filterText)
-        .value();
       return {
-        code: `export default ${JSON.stringify(translations)};`,
+        code: `export default ${JSON.stringify(_.mapValues(translations, filterText))};`,
         map: null,
       };
     },
