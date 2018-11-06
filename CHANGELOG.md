@@ -1,3 +1,13 @@
+## [2.1.5](https://github.com/ovh-ux/component-rollup-config/compare/v2.1.4...v2.1.5) (2018-11-06)
+
+
+### Bug Fixes
+
+* **package.json:** specify files entry ([e8de8e7](https://github.com/ovh-ux/component-rollup-config/commit/e8de8e7))
+* **translation-xml:** rollback to regex to handle malformed xml ([c015b30](https://github.com/ovh-ux/component-rollup-config/commit/c015b30))
+
+
+
 ## [2.1.4](https://github.com/ovh-ux/component-rollup-config/compare/v2.1.3...v2.1.4) (2018-11-02)
 
 
