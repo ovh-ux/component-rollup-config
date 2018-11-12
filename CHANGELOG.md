@@ -1,3 +1,29 @@
+# [3.0.0](https://github.com/ovh-ux/component-rollup-config/compare/v2.1.5...v3.0.0) (2018-11-12)
+
+
+### Bug Fixes
+
+* remove unused rollup-plugin-less dependencie ([21bb564](https://github.com/ovh-ux/component-rollup-config/commit/21bb564))
+
+
+### Features
+
+* **plugins:** manage multiple formats instead of xml only ([61aab9f](https://github.com/ovh-ux/component-rollup-config/commit/61aab9f))
+
+
+### BREAKING CHANGES
+
+* Install corresponding dependencies
+
+  Before: unused `rollup-plugin-less` with `less: ^2.7.1`
+
+  After: `less` and `node-sass` has been installed
+
+  - "less": "^3.8.1"
+  - "node-sass": "^4.10.0"
+
+
+
 ## [2.1.5](https://github.com/ovh-ux/component-rollup-config/compare/v2.1.4...v2.1.5) (2018-11-06)
 
 
