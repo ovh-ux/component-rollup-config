@@ -17,14 +17,17 @@ module.exports = (opts = {}) => {
       const magicString = new MagicString(code);
       this.parse(code, {
         onComment: (block, text, start, end) => {
-          const match = text.match(/@ngTranslationsInject(.*)/);
+          const match = text.match(/@ngTranslationsInject:?([a-zA-Z]+)?(.*)/);
           if (match) {
             const translations = _.chain(match)
-              .get(1)
+              .get(2)
               .split(/\s+/)
               .value();
+
+            const format = _.get(match, '[1]');
+
             if (_(translations).isArray() && !_(translations).isEmpty()) {
-              const inject = utils.injectTranslationImports(translations, id, subdirectory);
+              const inject = utils.injectTranslationImports(translations, id, subdirectory, format);
               magicString.overwrite(start, end, `/* @ngInject */ ($translate, $q, asyncLoader) => { ${inject} }`);
             } else {
               magicString.overwrite(start, end, 'angular.noop');

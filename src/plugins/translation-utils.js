@@ -26,7 +26,7 @@ const languages = [
 
 const normalizePath = p => (_.startsWith(p, '.') ? slash(p) : `./${slash(p)}`);
 
-const injectFallbackFunction = (trads, id, subdirectory) => {
+const injectFallbackFunction = (trads, id, subdirectory, format) => {
   let code = 'switch($translate.fallbackLanguage()) {';
   languages.forEach((lang) => {
     code += `case '${lang}':`;
@@ -34,8 +34,8 @@ const injectFallbackFunction = (trads, id, subdirectory) => {
       const dirname = path.dirname(id);
       const fullTradPath = path.resolve(dirname, trad, subdirectory);
       const relativePath = path.relative(dirname, fullTradPath);
-      if (fs.existsSync(path.join(fullTradPath, `Messages_${lang}.xml`))) {
-        const toImport = normalizePath(path.join(relativePath, `Messages_${lang}.xml`));
+      if (fs.existsSync(path.join(fullTradPath, `Messages_${lang}.${format}`))) {
+        const toImport = normalizePath(path.join(relativePath, `Messages_${lang}.${format}`));
         code += `promises.push(import('${toImport}').then(module => module.default));`;
       }
     });
@@ -45,7 +45,7 @@ const injectFallbackFunction = (trads, id, subdirectory) => {
   return code;
 };
 
-const injectTranslationSwitch = (trads, id, subdirectory) => {
+const injectTranslationSwitch = (trads, id, subdirectory, format) => {
   let code = 'switch($translate.use()) {';
   languages.forEach((lang) => {
     let importFound = 0;
@@ -54,8 +54,8 @@ const injectTranslationSwitch = (trads, id, subdirectory) => {
       const dirname = path.dirname(id);
       const fullTradPath = path.resolve(dirname, trad, subdirectory);
       const relativePath = path.relative(dirname, fullTradPath);
-      if (fs.existsSync(path.join(fullTradPath, `Messages_${lang}.xml`))) {
-        const toImport = normalizePath(path.join(relativePath, `Messages_${lang}.xml`));
+      if (fs.existsSync(path.join(fullTradPath, `Messages_${lang}.${format}`))) {
+        const toImport = normalizePath(path.join(relativePath, `Messages_${lang}.${format}`));
         code += `promises.push(import('${toImport}').then(module => module.default));`;
         importFound += 1;
       }
@@ -69,12 +69,12 @@ const injectTranslationSwitch = (trads, id, subdirectory) => {
   return code;
 };
 
-const injectTranslationImports = (trads, id, subdirectory) => `
+const injectTranslationImports = (trads, id, subdirectory, format = 'xml') => `
   let promises = [];
   const useFallback = () => {
-    ${injectFallbackFunction(trads, id, subdirectory)}
+    ${injectFallbackFunction(trads, id, subdirectory, format)}
   };
-  ${injectTranslationSwitch(trads, id, subdirectory)}
+  ${injectTranslationSwitch(trads, id, subdirectory, format)}
   promises.forEach(p => asyncLoader.addTranslations(p));
   return $q.all(promises).then(() => $translate.refresh());
 `;

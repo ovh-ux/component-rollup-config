@@ -55,10 +55,17 @@ $stateProvider.state('my-state', {
 
 Handle `@ngTranslationsInject` comment in order to facilitate dynamic import of ovh translations.
 
+The format is as follows: `@ngTranslationsInject:{format} [translations]`
+
+`format` is a string which represent the format of translations files (xml, json, ...)
+`translations` is multiple strings separated by a space
+
 ```js
 angular
   .module('myModule', [])
-  .run(/* @ngTranslationsInject ./translations ../common/translations */);
+  .run(/* @ngTranslationsInject ./translations ../common/translations */); // Load .translations and ../common/translations in xml
+  .run(/* @ngTranslationsInject:xml ./translations ../common/translations */); // Load .translations and ../common/translations in xml
+  .run(/* @ngTranslationsInject:json ./translations ../common/translations */); // Load .translations and ../common/translations in json
 ```
 
 ```js

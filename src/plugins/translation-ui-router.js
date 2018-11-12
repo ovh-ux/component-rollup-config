@@ -47,19 +47,40 @@ module.exports = (opts = {}) => {
               .head();
 
             if (translations.value()) {
+              let format;
+              let value;
+
+              if (translations.has('value.elements').value()) {
+                value = translations.get('value.elements')
+                  .map('value')
+                  .value();
+              } else {
+                const myObj = translations.get('value.properties');
+                format = _.chain(myObj)
+                  .filter(({ key }) => key.name === 'format')
+                  .head()
+                  .get('value.value')
+                  .value();
+                value = _.chain(myObj)
+                  .filter(({ key }) => key.name === 'value')
+                  .head()
+                  .get('value.elements')
+                  .map('value')
+                  .value();
+              }
+
               const resolve = _.chain(props)
                 .filter({ key: { name: 'resolve' }, type: 'Property' })
                 .head()
                 .get('value.properties')
                 .last()
                 .value();
+
               let inject = utils.injectTranslationImports(
-                translations
-                  .get('value.elements')
-                  .map('value')
-                  .value(),
+                value,
                 id,
                 subdirectory,
+                format,
               );
 
               inject = `translations: ($q, $translate, asyncLoader) => { ${inject} }`;
