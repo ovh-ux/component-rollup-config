@@ -1,3 +1,12 @@
+## [3.0.1](https://github.com/ovh-ux/component-rollup-config/compare/v3.0.0...v3.0.1) (2018-11-14)
+
+
+### Features
+
+* **plugins:** add less and sass rollup plugins ([c09b33f](https://github.com/ovh-ux/component-rollup-config/commit/c09b33f))
+
+
+
 # [3.0.0](https://github.com/ovh-ux/component-rollup-config/compare/v2.1.5...v3.0.0) (2018-11-12)
 
 
