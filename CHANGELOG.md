@@ -1,3 +1,17 @@
+# [4.0.0](https://github.com/ovh-ux/component-rollup-config/compare/v3.0.1...v4.0.0) (2018-11-16)
+
+
+### Features
+
+* cjs and umd targets ([#25](https://github.com/ovh-ux/component-rollup-config/issues/25)) ([60da908](https://github.com/ovh-ux/component-rollup-config/commit/60da908))
+
+
+### BREAKING CHANGES
+
+* ES module are not targeted anymore
+
+
+
 ## [3.0.1](https://github.com/ovh-ux/component-rollup-config/compare/v3.0.0...v3.0.1) (2018-11-14)
 
 
