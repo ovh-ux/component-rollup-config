@@ -1,3 +1,12 @@
+## [4.0.1](https://github.com/ovh-ux/component-rollup-config/compare/v4.0.0...v4.0.1) (2018-11-18)
+
+
+### Bug Fixes
+
+* **deps:** move babel-preset-env from devDeps to dependencies ([285c90c](https://github.com/ovh-ux/component-rollup-config/commit/285c90c))
+
+
+
 # [4.0.0](https://github.com/ovh-ux/component-rollup-config/compare/v3.0.1...v4.0.0) (2018-11-16)
 
 
