@@ -12,40 +12,43 @@ yarn add -D @ovh-ux/component-rollup-config
 
 ## Usage
 
-The default configuration has multiple targets: CommonJS and UMD.
-
 ```js
-import config from '@ovh-ux/component-rollup-config';
+import configGenerator from '@ovh-ux/component-rollup-config';
 
-export default config({
-  input: 'src/index.js'
-})
-```
+// generate your configuration with global options
+const config = configGenerator({
+  input: './src/my-library.js'
+});
 
-### CommonJS
+// export desired list of target(s)
+export default [
 
-To target only a CommonJS build.
+  // ES6 module
+  config.es(),
 
-```js
-import config from '@ovh-ux/component-rollup-config';
+  // CommonJS
+  config.cjs(),
 
-export default config.cjs({
-  input: 'src/index.js'
-})
-```
+  // UMD (Universal Module Definition)
+  config.umd({
+    output: {
+      globals: {
+        $: 'jQuery',
+        angular: 'angular',
+      },
+    },
+  }),
 
-### UMD
-
-To target only an UMD build.
-
-```js
-import config from '@ovh-ux/component-rollup-config';
-
-export default config.umd({
-  input: 'src/index.js'
-}, 'myLibrary', {
-  angular: 'angular',
-})
+  // IIFE (Immediately Invoked Function Expression)
+  config.iife({
+    output: {
+      globals: {
+        $: 'jQuery',
+        angular: 'angular',
+      },
+    },
+  }),
+];
 ```
 
 ## Plugins

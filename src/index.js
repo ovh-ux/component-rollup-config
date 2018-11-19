@@ -1,4 +1,6 @@
+const { merge } = require('lodash');
 const babel = require('rollup-plugin-babel');
+const camelcase = require('camelcase');
 const commonjs = require('rollup-plugin-commonjs');
 const html = require('rollup-plugin-html');
 const less = require('rollup-plugin-less');
@@ -50,38 +52,59 @@ const generateConfig = opts => Object.assign({
   ],
 }, opts);
 
-const cjs = opts => generateConfig(Object.assign({
+const cjs = opts => generateConfig(merge({
   experimentalCodeSplitting: true,
-  output: [{
+  output: {
     dir: './dist/cjs',
     format: 'cjs',
     sourcemap: true,
-  }],
+  },
 }, opts));
 
-const umd = (opts, name, globals = {}) => generateConfig(Object.assign({
-  output: [{
-    name,
-    file: `./dist/umd/${name}.js`,
-    format: 'umd',
-    globals,
+const umd = (opts) => {
+  const defaultName = path.basename(process.cwd());
+  return generateConfig(merge({
+    output: {
+      name: defaultName,
+      file: `./dist/umd/${defaultName}.js`,
+      format: 'umd',
+      sourcemap: true,
+    },
+  }, opts));
+};
+
+const es = opts => generateConfig(merge({
+  experimentalCodeSplitting: true,
+  output: {
+    dir: './dist/esm',
+    format: 'es',
     sourcemap: true,
-  }],
+  },
 }, opts));
 
-const config = (opts = {}) => [
-  cjs(opts),
-  umd(opts, path.basename(process.cwd())),
-];
+const iife = (opts) => {
+  const defaultName = path.basename(process.cwd());
+  return generateConfig(merge({
+    output: {
+      name: camelcase(defaultName),
+      file: `./dist/iife/${defaultName}.js`,
+      format: 'iife',
+      sourcemap: true,
+    },
+  }, opts));
+};
 
-config.cjs = cjs;
-config.umd = umd;
+const config = (globalOpts = {}) => ({
+  cjs: (opts = {}) => cjs(merge(opts, globalOpts)),
+  es: (opts = {}) => es(merge(opts, globalOpts)),
+  iife: (opts = {}) => iife(merge(opts, globalOpts)),
+  umd: (opts = {}) => umd(merge(opts, globalOpts)),
+});
+
 config.plugins = {
   translationInject,
   translationUiRouter,
   translationXML,
-  cjs,
-  umd,
 };
 
 module.exports = config;
