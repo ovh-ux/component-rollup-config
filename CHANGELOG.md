@@ -1,3 +1,17 @@
+# [5.0.0-beta.0](https://github.com/ovh-ux/component-rollup-config/compare/v4.0.1...v5.0.0-beta.0) (2018-11-19)
+
+
+### Bug Fixes
+
+* **targets:** refactor config targets ([#27](https://github.com/ovh-ux/component-rollup-config/issues/27)) ([e23f751](https://github.com/ovh-ux/component-rollup-config/commit/e23f751))
+
+
+### BREAKING CHANGES
+
+* **targets:** usage has changed
+
+
+
 ## [4.0.1](https://github.com/ovh-ux/component-rollup-config/compare/v4.0.0...v4.0.1) (2018-11-18)
 
 
