@@ -36,7 +36,7 @@ const injectFallbackFunction = (trads, id, subdirectory, format) => {
       const relativePath = path.relative(dirname, fullTradPath);
       if (fs.existsSync(path.join(fullTradPath, `Messages_${lang}.${format}`))) {
         const toImport = normalizePath(path.join(relativePath, `Messages_${lang}.${format}`));
-        code += `promises.push(import('${toImport}').then(module => module.default));`;
+        code += `promises.push(import('${toImport}').then(module => module.default ? module.default : module));`;
       }
     });
     code += 'break;';
@@ -56,7 +56,7 @@ const injectTranslationSwitch = (trads, id, subdirectory, format) => {
       const relativePath = path.relative(dirname, fullTradPath);
       if (fs.existsSync(path.join(fullTradPath, `Messages_${lang}.${format}`))) {
         const toImport = normalizePath(path.join(relativePath, `Messages_${lang}.${format}`));
-        code += `promises.push(import('${toImport}').then(module => module.default));`;
+        code += `promises.push(import('${toImport}').then(module => module.default ? module.default : module));`;
         importFound += 1;
       }
     });
