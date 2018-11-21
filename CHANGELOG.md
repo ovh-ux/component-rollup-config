@@ -1,3 +1,12 @@
+# [5.0.0-beta.1](https://github.com/ovh-ux/component-rollup-config/compare/v5.0.0-beta.0...v5.0.0-beta.1) (2018-11-21)
+
+
+### Bug Fixes
+
+* **plugins:** test module.default in injections ([#28](https://github.com/ovh-ux/component-rollup-config/issues/28)) ([7956013](https://github.com/ovh-ux/component-rollup-config/commit/7956013))
+
+
+
 # [5.0.0-beta.0](https://github.com/ovh-ux/component-rollup-config/compare/v4.0.1...v5.0.0-beta.0) (2018-11-19)
 
 
