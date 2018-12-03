@@ -1,3 +1,12 @@
+# [5.0.0-beta.2](https://github.com/ovh-ux/component-rollup-config/compare/v5.0.0-beta.1...v5.0.0-beta.2) (2018-12-03)
+
+
+### Features
+
+* **plugins:** add [@ovh-ux](https://github.com/ovh-ux)/rollup-plugin-less-tilde-import plugin ([#30](https://github.com/ovh-ux/component-rollup-config/issues/30)) ([06e91a1](https://github.com/ovh-ux/component-rollup-config/commit/06e91a1))
+
+
+
 # [5.0.0-beta.1](https://github.com/ovh-ux/component-rollup-config/compare/v5.0.0-beta.0...v5.0.0-beta.1) (2018-11-21)
 
 
