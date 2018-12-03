@@ -745,6 +745,14 @@
     mkdirp "^0.5.1"
     rimraf "^2.5.2"
 
+"@ovh-ux/rollup-plugin-less-tilde-importer@^1.0.0-beta.0":
+  version "1.0.0-beta.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/rollup-plugin-less-tilde-importer/-/rollup-plugin-less-tilde-importer-1.0.0-beta.0.tgz#eaf065c6e1fd039db0ddfb2f30955aec987e0c63"
+  integrity sha512-ahcWHh6a28Y3jfmLkmhhMM7IctXM41aAbfbpl4ZT1kxXad3yzrwZ4jZksFqjZvUsfxvcQFsxxx8KXhwSJm1WPg==
+  dependencies:
+    magic-string "^0.25.1"
+    rollup-pluginutils "^2.3.3"
+
 "@samverschueren/stream-to-observable@^0.3.0":
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/@samverschueren/stream-to-observable/-/stream-to-observable-0.3.0.tgz#ecdf48d532c58ea477acfcab80348424f8d0662f"

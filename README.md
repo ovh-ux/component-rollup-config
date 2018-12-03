@@ -53,7 +53,7 @@ export default [
 
 ## Plugins
 
-This configuration provides some plugins to facilitate loading and importing of ovh translations.
+This configuration provides some plugins to facilitate loading and importing of ovh translations ; as well as a plugin to facilitate less imports.
 
 ### translation-xml
 
@@ -122,11 +122,43 @@ angular
   .controller('myController', MyController);
 ```
 
+### rollup-plugin-less-tilde-importer
+
+Provides ~ (tilde) prefix to tell less compiler that it should resolve imports using a configured array of paths.
+
+```js
+import configGenerator from '@ovh-ux/component-rollup-config';
+
+const config = configGenerator({
+  input: './src/my-library.js'
+}, {
+  lessTildeImporter: {
+    paths: [
+      '/foo/bar',
+      '/hello/world',
+    ],
+  },
+});
+
+export default [
+  config.cjs(),
+];
+```
+
+```less
+// try importing bootstrap from '/foo/bar/boostrap' then from '/hello/world/bootstrap'
+@import '~boostrap';
+```
+
 ## Test
 
 ```sh
 yarn test
 ```
+
+## Related
+
+* [rollup-plugin-less-tilde-importer](https://github.com/ovh-ux/rollup-plugin-less-tilde-importer) - Rollup plugin to facilitate less imports with a ~ (tilde) prefix
 
 ## Contributing
 

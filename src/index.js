@@ -5,6 +5,7 @@ const commonjs = require('rollup-plugin-commonjs');
 const html = require('rollup-plugin-html');
 const less = require('rollup-plugin-less');
 const lessPluginRemcalc = require('less-plugin-remcalc');
+const lessTildeImporter = require('@ovh-ux/rollup-plugin-less-tilde-importer');
 const path = require('path');
 const peerdeps = require('rollup-plugin-peer-deps-external');
 const resolve = require('rollup-plugin-node-resolve');
@@ -13,10 +14,11 @@ const translationInject = require('./plugins/translation-inject');
 const translationUiRouter = require('./plugins/translation-ui-router');
 const translationXML = require('./plugins/translation-xml');
 
-const generateConfig = opts => Object.assign({
+const generateConfig = (opts, pluginsOpts) => Object.assign({
   plugins: [
     peerdeps(),
     html(),
+    lessTildeImporter(pluginsOpts.lessTildeImporter),
     less({
       insert: true,
       // prevent generating a `rollup.build.css` file due to `insert: true` option.
@@ -52,16 +54,16 @@ const generateConfig = opts => Object.assign({
   ],
 }, opts);
 
-const cjs = opts => generateConfig(merge({
+const cjs = (opts, pluginsOpts) => generateConfig(merge({
   experimentalCodeSplitting: true,
   output: {
     dir: './dist/cjs',
     format: 'cjs',
     sourcemap: true,
   },
-}, opts));
+}, opts), pluginsOpts);
 
-const umd = (opts) => {
+const umd = (opts, pluginsOpts) => {
   const defaultName = path.basename(process.cwd());
   return generateConfig(merge({
     output: {
@@ -70,19 +72,19 @@ const umd = (opts) => {
       format: 'umd',
       sourcemap: true,
     },
-  }, opts));
+  }, opts), pluginsOpts);
 };
 
-const es = opts => generateConfig(merge({
+const es = (opts, pluginsOpts) => generateConfig(merge({
   experimentalCodeSplitting: true,
   output: {
     dir: './dist/esm',
     format: 'es',
     sourcemap: true,
   },
-}, opts));
+}, opts), pluginsOpts);
 
-const iife = (opts) => {
+const iife = (opts, pluginsOpts) => {
   const defaultName = path.basename(process.cwd());
   return generateConfig(merge({
     output: {
@@ -91,14 +93,14 @@ const iife = (opts) => {
       format: 'iife',
       sourcemap: true,
     },
-  }, opts));
+  }, opts), pluginsOpts);
 };
 
-const config = (globalOpts = {}) => ({
-  cjs: (opts = {}) => cjs(merge(opts, globalOpts)),
-  es: (opts = {}) => es(merge(opts, globalOpts)),
-  iife: (opts = {}) => iife(merge(opts, globalOpts)),
-  umd: (opts = {}) => umd(merge(opts, globalOpts)),
+const config = (globalOpts = {}, pluginsOpts = {}) => ({
+  cjs: (opts = {}) => cjs(merge(opts, globalOpts), pluginsOpts),
+  es: (opts = {}) => es(merge(opts, globalOpts), pluginsOpts),
+  iife: (opts = {}) => iife(merge(opts, globalOpts), pluginsOpts),
+  umd: (opts = {}) => umd(merge(opts, globalOpts), pluginsOpts),
 });
 
 config.plugins = {
