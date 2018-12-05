@@ -33,8 +33,8 @@ export default [
   config.umd({
     output: {
       globals: {
-        $: 'jQuery',
         angular: 'angular',
+        jquery: '$',
       },
     },
   }),
@@ -43,8 +43,8 @@ export default [
   config.iife({
     output: {
       globals: {
-        $: 'jQuery',
         angular: 'angular',
+        jquery: '$',
       },
     },
   }),
