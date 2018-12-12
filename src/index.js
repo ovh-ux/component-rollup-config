@@ -3,6 +3,7 @@ const babel = require('rollup-plugin-babel');
 const camelcase = require('camelcase');
 const commonjs = require('rollup-plugin-commonjs');
 const html = require('rollup-plugin-html');
+const json = require('rollup-plugin-json');
 const less = require('rollup-plugin-less');
 const lessPluginRemcalc = require('less-plugin-remcalc');
 const lessTildeImporter = require('@ovh-ux/rollup-plugin-less-tilde-importer');
@@ -18,6 +19,11 @@ const generateConfig = (opts, pluginsOpts) => Object.assign({
   plugins: [
     peerdeps(),
     html(),
+    json({
+      preferConst: true,
+      compact: true,
+      namedExports: false,
+    }),
     lessTildeImporter(pluginsOpts.lessTildeImporter),
     less({
       insert: true,
