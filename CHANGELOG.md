@@ -1,3 +1,12 @@
+# [5.0.0-beta.3](https://github.com/ovh-ux/component-rollup-config/compare/v5.0.0-beta.2...v5.0.0-beta.3) (2018-12-12)
+
+
+### Features
+
+* manage json files ([#32](https://github.com/ovh-ux/component-rollup-config/issues/32)) ([e79d5e0](https://github.com/ovh-ux/component-rollup-config/commit/e79d5e0))
+
+
+
 # [5.0.0-beta.2](https://github.com/ovh-ux/component-rollup-config/compare/v5.0.0-beta.1...v5.0.0-beta.2) (2018-12-03)
 
 
