@@ -37,7 +37,7 @@
     "lodash": "^4.17.11",
     "magic-string": "^0.25.1",
     "node-sass": "^4.10.0",
-    "rollup": "^0.66.6",
+    "rollup": "^1.0.0",
     "rollup-plugin-babel": "^4.0.3",
     "rollup-plugin-commonjs": "^9.2.0",
     "rollup-plugin-html": "^0.2.1",

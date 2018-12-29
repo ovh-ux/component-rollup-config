@@ -24,8 +24,8 @@ describe('plugins', () => {
           include: '*.xml',
         }),
       ],
-    }).then(({ modules }) => {
-      bundleModules = modules;
+    }).then((bundle) => {
+      bundleModules = bundle.cache.modules;
     }));
 
     it('should convert XML to JSON', () => {
