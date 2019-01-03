@@ -18,8 +18,8 @@
   "main": "./src/index.js",
   "scripts": {
     "lint": "run-p lint:js lint:md",
-    "lint:js": "eslint --quiet --fix .",
-    "lint:md": "eslint --quiet --fix --ext .md .",
+    "lint:js": "eslint --quiet --fix --format=pretty .",
+    "lint:md": "eslint --quiet --fix --format=pretty --ext .md .",
     "test": "yarn run lint && mocha",
     "version": "npx conventional-changelog-cli -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
     "postversion": "git push && git push --tags"
@@ -54,6 +54,7 @@
     "@commitlint/config-angular": "^7.1.2",
     "eslint": "^5.5.0",
     "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-formatter-pretty": "^2.0.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-markdown": "^1.0.0",
     "husky": "^1.0.0",
