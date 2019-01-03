@@ -17,7 +17,7 @@ import configGenerator from '@ovh-ux/component-rollup-config';
 
 // generate your configuration with global options
 const config = configGenerator({
-  input: './src/my-library.js'
+  input: './src/my-library.js',
 });
 
 // export desired list of target(s)
@@ -92,18 +92,28 @@ The format is as follows: `@ngTranslationsInject:{format} [translations]`
 `translations` is multiple strings separated by a space
 
 ```js
+// Load .translations and ../common/translations in xml
 angular
   .module('myModule', [])
-  .run(/* @ngTranslationsInject ./translations ../common/translations */); // Load .translations and ../common/translations in xml
-  .run(/* @ngTranslationsInject:xml ./translations ../common/translations */); // Load .translations and ../common/translations in xml
-  .run(/* @ngTranslationsInject:json ./translations ../common/translations */); // Load .translations and ../common/translations in json
+  .run(/* @ngTranslationsInject ./translations ../common/translations */);
+
+// Load .translations and ../common/translations in xml
+angular
+  .module('myModule', [])
+  .run(/* @ngTranslationsInject:xml ./translations ../common/translations */);
+
+// Load .translations and ../common/translations in json
+angular
+  .module('myModule', [])
+  .run(/* @ngTranslationsInject:json ./translations ../common/translations */);
 ```
 
 ```js
-class MyController {
-  constructor($injector) {
-    'ngInject';
+import angular from 'angular';
 
+class MyController {
+  /* @ngInject */
+  constructor($injector) {
     this.$injector = $injector;
   }
 
@@ -130,7 +140,7 @@ Provides ~ (tilde) prefix to tell less compiler that it should resolve imports u
 import configGenerator from '@ovh-ux/component-rollup-config';
 
 const config = configGenerator({
-  input: './src/my-library.js'
+  input: './src/my-library.js',
 }, {
   lessTildeImporter: {
     paths: [
