@@ -1,3 +1,7 @@
+# [5.0.0-beta.4](https://github.com/ovh-ux/component-rollup-config/compare/v5.0.0-beta.3...v5.0.0-beta.4) (2019-01-15)
+
+
+
 # [5.0.0-beta.3](https://github.com/ovh-ux/component-rollup-config/compare/v5.0.0-beta.2...v5.0.0-beta.3) (2018-12-12)
 
 
