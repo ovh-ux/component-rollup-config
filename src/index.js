@@ -60,8 +60,9 @@ const generateConfig = (opts, pluginsOpts) => Object.assign({
   ],
 }, opts);
 
+const defaultName = path.basename(process.cwd());
+
 const cjs = (opts, pluginsOpts) => generateConfig(merge({
-  experimentalCodeSplitting: true,
   output: {
     dir: './dist/cjs',
     format: 'cjs',
@@ -69,20 +70,17 @@ const cjs = (opts, pluginsOpts) => generateConfig(merge({
   },
 }, opts), pluginsOpts);
 
-const umd = (opts, pluginsOpts) => {
-  const defaultName = path.basename(process.cwd());
-  return generateConfig(merge({
-    output: {
-      name: defaultName,
-      file: `./dist/umd/${defaultName}.js`,
-      format: 'umd',
-      sourcemap: true,
-    },
-  }, opts), pluginsOpts);
-};
+const umd = (opts, pluginsOpts) => generateConfig(merge({
+  inlineDynamicImports: true,
+  output: {
+    name: defaultName,
+    file: `./dist/umd/${defaultName}.js`,
+    format: 'umd',
+    sourcemap: true,
+  },
+}, opts), pluginsOpts);
 
 const es = (opts, pluginsOpts) => generateConfig(merge({
-  experimentalCodeSplitting: true,
   output: {
     dir: './dist/esm',
     format: 'es',
@@ -90,17 +88,15 @@ const es = (opts, pluginsOpts) => generateConfig(merge({
   },
 }, opts), pluginsOpts);
 
-const iife = (opts, pluginsOpts) => {
-  const defaultName = path.basename(process.cwd());
-  return generateConfig(merge({
-    output: {
-      name: camelcase(defaultName),
-      file: `./dist/iife/${defaultName}.js`,
-      format: 'iife',
-      sourcemap: true,
-    },
-  }, opts), pluginsOpts);
-};
+const iife = (opts, pluginsOpts) => generateConfig(merge({
+  inlineDynamicImports: true,
+  output: {
+    name: camelcase(defaultName),
+    file: `./dist/iife/${defaultName}.js`,
+    format: 'iife',
+    sourcemap: true,
+  },
+}, opts), pluginsOpts);
 
 const config = (globalOpts = {}, pluginsOpts = {}) => ({
   cjs: (opts = {}) => cjs(merge(opts, globalOpts), pluginsOpts),
