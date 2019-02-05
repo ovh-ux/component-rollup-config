@@ -27,7 +27,7 @@ const languages = [
 const normalizePath = p => (_.startsWith(p, '.') ? slash(p) : `./${slash(p)}`);
 
 const injectFallbackFunction = (trads, id, subdirectory, format) => {
-  let code = 'switch($translate.fallbackLanguage()) {';
+  let code = 'let p; switch($translate.fallbackLanguage()) {';
   languages.forEach((lang) => {
     code += `case '${lang}':`;
     trads.forEach((trad) => {
@@ -36,17 +36,18 @@ const injectFallbackFunction = (trads, id, subdirectory, format) => {
       const relativePath = path.relative(dirname, fullTradPath);
       if (fs.existsSync(path.join(fullTradPath, `Messages_${lang}.${format}`))) {
         const toImport = normalizePath(path.join(relativePath, `Messages_${lang}.${format}`));
-        code += `promises.push(import('${toImport}').then(module => module.default ? module.default : module));`;
+        code += `p = import('${toImport}').then(module => module.default ? module.default : module);`;
       }
     });
     code += 'break;';
   });
-  code += '}';
+  code += '} return p;';
   return code;
 };
 
 const injectTranslationSwitch = (trads, id, subdirectory, format) => {
   let code = 'switch($translate.use()) {';
+
   languages.forEach((lang) => {
     let importFound = 0;
     code += `case '${lang}':`;
@@ -56,16 +57,33 @@ const injectTranslationSwitch = (trads, id, subdirectory, format) => {
       const relativePath = path.relative(dirname, fullTradPath);
       if (fs.existsSync(path.join(fullTradPath, `Messages_${lang}.${format}`))) {
         const toImport = normalizePath(path.join(relativePath, `Messages_${lang}.${format}`));
-        code += `promises.push(import('${toImport}').then(module => module.default ? module.default : module));`;
+
+        code += `if($translate.use() !== $translate.fallbackLanguage()) {
+          promises.push(
+            Promise.all([
+              import('${toImport}').then(module => module.default ? module.default : module),
+              useFallback(),
+            ])
+            .then(([ translations = {}, fallbackTranslations = {} ]) => {
+              return Object.assign(translations, fallbackTranslations);
+            })
+          );
+        } else {
+          promises.push(
+            import('${toImport}').then(module => module.default ? module.default : module),
+          );
+        }`;
+
         importFound += 1;
       }
     });
+
     if (!importFound) {
       code += 'useFallback();';
     }
     code += 'break;';
   });
-  code += 'default: useFallback(); break; }';
+  code += 'default: promises.push(useFallback()); break; }';
   return code;
 };
 
