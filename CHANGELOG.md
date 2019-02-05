@@ -1,3 +1,12 @@
+# [5.0.0-beta.6](https://github.com/ovh-ux/component-rollup-config/compare/v5.0.0-beta.5...v5.0.0-beta.6) (2019-02-05)
+
+
+### Bug Fixes
+
+* **plugins:** manage fallback by key instead of language ([09f9c84](https://github.com/ovh-ux/component-rollup-config/commit/09f9c84))
+
+
+
 # [5.0.0-beta.5](https://github.com/ovh-ux/component-rollup-config/compare/v5.0.0-beta.4...v5.0.0-beta.5) (2019-01-21)
 
 
