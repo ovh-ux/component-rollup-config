@@ -65,7 +65,7 @@ const injectTranslationSwitch = (trads, id, subdirectory, format) => {
               useFallback(),
             ])
             .then(([ translations = {}, fallbackTranslations = {} ]) => {
-              return Object.assign(translations, fallbackTranslations);
+              return Object.assign(fallbackTranslations, translations);
             })
           );
         } else {
