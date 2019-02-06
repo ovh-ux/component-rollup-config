@@ -1,3 +1,12 @@
+# [5.0.0-beta.8](https://github.com/ovh-ux/component-rollup-config/compare/v5.0.0-beta.7...v5.0.0-beta.8) (2019-02-06)
+
+
+### Bug Fixes
+
+* **plugins:** use fallback by file ([2f782a6](https://github.com/ovh-ux/component-rollup-config/commit/2f782a6))
+
+
+
 # [5.0.0-beta.7](https://github.com/ovh-ux/component-rollup-config/compare/v5.0.0-beta.6...v5.0.0-beta.7) (2019-02-06)
 
 
