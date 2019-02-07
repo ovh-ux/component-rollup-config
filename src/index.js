@@ -3,6 +3,7 @@ const babel = require('rollup-plugin-babel');
 const camelcase = require('camelcase');
 const commonjs = require('rollup-plugin-commonjs');
 const html = require('rollup-plugin-html');
+const image = require('rollup-plugin-img');
 const json = require('rollup-plugin-json');
 const less = require('rollup-plugin-less');
 const lessPluginRemcalc = require('less-plugin-remcalc');
@@ -39,6 +40,7 @@ const generateConfig = (opts, pluginsOpts) => Object.assign({
       insert: true,
       output: false,
     }),
+    image(),
     resolve(),
     commonjs(),
     translationInject(),
