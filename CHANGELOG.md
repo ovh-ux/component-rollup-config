@@ -1,3 +1,12 @@
+# [5.0.0-beta.9](https://github.com/ovh-ux/component-rollup-config/compare/v5.0.0-beta.8...v5.0.0-beta.9) (2019-02-07)
+
+
+### Features
+
+* **plugin:** support image import ([5065a95](https://github.com/ovh-ux/component-rollup-config/commit/5065a95))
+
+
+
 # [5.0.0-beta.8](https://github.com/ovh-ux/component-rollup-config/compare/v5.0.0-beta.7...v5.0.0-beta.8) (2019-02-06)
 
 
