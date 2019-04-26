@@ -1,3 +1,12 @@
+## [5.0.1](https://github.com/ovh-ux/component-rollup-config/compare/v5.0.0...v5.0.1) (2019-04-26)
+
+
+### Bug Fixes
+
+* **loaders:** configure image loader to add assets in dist ([ff6945a](https://github.com/ovh-ux/component-rollup-config/commit/ff6945a))
+
+
+
 # [5.0.0](https://github.com/ovh-ux/component-rollup-config/compare/v5.0.0-beta.9...v5.0.0) (2019-04-05)
 
 
