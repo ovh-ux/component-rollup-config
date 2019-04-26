@@ -16,6 +16,8 @@ const translationInject = require('./plugins/translation-inject');
 const translationUiRouter = require('./plugins/translation-ui-router');
 const translationXML = require('./plugins/translation-xml');
 
+const defaultName = path.basename(process.cwd());
+
 const generateConfig = (opts, pluginsOpts) => Object.assign({
   plugins: [
     peerdeps(),
@@ -40,7 +42,9 @@ const generateConfig = (opts, pluginsOpts) => Object.assign({
       insert: true,
       output: false,
     }),
-    image(),
+    image({
+      output: `./dist/assets/${defaultName}`,
+    }),
     resolve(),
     commonjs(),
     translationInject(),
@@ -61,8 +65,6 @@ const generateConfig = (opts, pluginsOpts) => Object.assign({
     }),
   ],
 }, opts);
-
-const defaultName = path.basename(process.cwd());
 
 const cjs = (opts, pluginsOpts) => generateConfig(merge({
   output: {
