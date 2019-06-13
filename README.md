@@ -160,6 +160,26 @@ export default [
 @import '~boostrap';
 ```
 
+### Performance
+
+Regarding the translations related plugins, it's possible to only process translations files for a single language. Please refer to the example below. This can be useful if you want faster builds in your developement environment for example.
+
+```js
+import configGenerator from '@ovh-ux/component-rollup-config';
+
+const config = configGenerator({
+  input: './src/my-library.js',
+}, {
+  translations: {
+    languages: ['fr_FR', 'en_EN'], // only FR and EN translations will be provided
+  },
+});
+
+export default [
+  config.cjs(),
+];
+```
+
 ## Test
 
 ```sh

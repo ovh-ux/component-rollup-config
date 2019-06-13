@@ -24,6 +24,7 @@ module.exports = (opts = {}) => {
   const sourcemap = opts.sourcemap !== false;
   const subdirectory = opts.subdirectory || './';
   const filtering = opts.filtering !== false;
+  const languages = Array.isArray(opts.languages) ? opts.languages : utils.languages;
   return {
     name: 'translation-ui-router',
     transform(code, id) {
@@ -77,6 +78,7 @@ module.exports = (opts = {}) => {
                 .value();
 
               let inject = utils.injectTranslationImports(
+                languages,
                 value,
                 id,
                 subdirectory,

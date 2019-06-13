@@ -1,4 +1,4 @@
-const { merge } = require('lodash');
+const { get, merge } = require('lodash');
 const babel = require('rollup-plugin-babel');
 const camelcase = require('camelcase');
 const commonjs = require('rollup-plugin-commonjs');
@@ -47,9 +47,12 @@ const generateConfig = (opts, pluginsOpts) => Object.assign({
     }),
     resolve(),
     commonjs(),
-    translationInject(),
+    translationInject({
+      languages: get(pluginsOpts, 'translations.languages'),
+    }),
     translationUiRouter({
       subdirectory: 'translations',
+      languages: get(pluginsOpts, 'translations.languages'),
     }),
     translationXML(),
     babel({
