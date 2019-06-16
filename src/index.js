@@ -1,4 +1,4 @@
-const { merge } = require('lodash');
+const { get, merge, without } = require('lodash');
 const babel = require('rollup-plugin-babel');
 const camelcase = require('camelcase');
 const commonjs = require('rollup-plugin-commonjs');
@@ -19,7 +19,7 @@ const translationXML = require('./plugins/translation-xml');
 const defaultName = path.basename(process.cwd());
 
 const generateConfig = (opts, pluginsOpts) => Object.assign({
-  plugins: [
+  plugins: without([
     peerdeps(),
     html(),
     json({
@@ -52,18 +52,20 @@ const generateConfig = (opts, pluginsOpts) => Object.assign({
       subdirectory: 'translations',
     }),
     translationXML(),
-    babel({
-      babelrc: false,
-      exclude: 'node_modules/**',
-      plugins: [
-        '@babel/plugin-syntax-dynamic-import',
-        'babel-plugin-angularjs-annotate',
-      ],
-      presets: [
-        ['@babel/preset-env'],
-      ],
-    }),
-  ],
+    get(pluginsOpts, 'babel.disabled')
+      ? null
+      : babel({
+        babelrc: false,
+        exclude: 'node_modules/**',
+        plugins: [
+          '@babel/plugin-syntax-dynamic-import',
+          'babel-plugin-angularjs-annotate',
+        ],
+        presets: [
+          ['@babel/preset-env'],
+        ],
+      }),
+  ], null),
 }, opts);
 
 const cjs = (opts, pluginsOpts) => generateConfig(merge({

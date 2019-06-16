@@ -160,6 +160,24 @@ export default [
 @import '~boostrap';
 ```
 
+### Performance
+
+Regarding the babel plugin, an option has been added to disable it, in case you don't need to babelify sources in your developement environment (if your browser can handle it). Please refer to the example below. It should speed up the build process.
+
+```js
+import configGenerator from '@ovh-ux/component-rollup-config';
+ const config = configGenerator({
+  input: './src/my-library.js',
+}, {
+  babel: {
+    disabled: true, // do not babelify sources
+  },
+});
+ export default [
+  config.cjs(),
+];
+```
+
 ## Test
 
 ```sh
