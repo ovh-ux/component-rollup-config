@@ -1,4 +1,4 @@
-const { get, merge } = require('lodash');
+const { get, isString, merge } = require('lodash');
 const babel = require('rollup-plugin-babel');
 const camelcase = require('camelcase');
 const commonjs = require('rollup-plugin-commonjs');
@@ -17,6 +17,13 @@ const translationUiRouter = require('./plugins/translation-ui-router');
 const translationXML = require('./plugins/translation-xml');
 
 const defaultName = path.basename(process.cwd());
+
+const getLanguages = (pluginsOpts) => {
+  if (isString(process.env.LANGUAGES)) {
+    return process.env.LANGUAGES.split('-');
+  }
+  return get(pluginsOpts, 'translations.languages');
+};
 
 const generateConfig = (opts, pluginsOpts) => Object.assign({
   plugins: [
@@ -48,11 +55,11 @@ const generateConfig = (opts, pluginsOpts) => Object.assign({
     resolve(),
     commonjs(),
     translationInject({
-      languages: get(pluginsOpts, 'translations.languages'),
+      languages: getLanguages(pluginsOpts),
     }),
     translationUiRouter({
       subdirectory: 'translations',
-      languages: get(pluginsOpts, 'translations.languages'),
+      languages: getLanguages(pluginsOpts),
     }),
     translationXML(),
     babel({

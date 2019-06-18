@@ -180,6 +180,13 @@ export default [
 ];
 ```
 
+You can also specify languages without modifying your rollup config by using the cli and passing the LANGUAGES environment variable. See the example below.
+
+```sh
+rollup -c --environment LANGUAGES:fr_FR
+rollup -c --environment LANGUAGES:fr_FR-en_GB-en_US
+```
+
 ## Test
 
 ```sh
