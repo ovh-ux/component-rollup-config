@@ -5,7 +5,7 @@ const commonjs = require('rollup-plugin-commonjs');
 const html = require('rollup-plugin-html');
 const image = require('rollup-plugin-img');
 const json = require('rollup-plugin-json');
-const less = require('rollup-plugin-less');
+const lessInject = require('@ovh-ux/rollup-plugin-less-inject');
 const lessPluginRemcalc = require('less-plugin-remcalc');
 const lessTildeImporter = require('@ovh-ux/rollup-plugin-less-tilde-importer');
 const path = require('path');
@@ -28,10 +28,7 @@ const generateConfig = (opts, pluginsOpts) => Object.assign({
       namedExports: false,
     }),
     lessTildeImporter(pluginsOpts.lessTildeImporter),
-    less({
-      insert: true,
-      // prevent generating a `rollup.build.css` file due to `insert: true` option.
-      output: css => css,
+    lessInject({
       option: {
         plugins: [
           lessPluginRemcalc,
