@@ -1,3 +1,13 @@
+# [5.1.0](https://github.com/ovh-ux/component-rollup-config/compare/v5.0.3...v5.1.0) (2019-06-25)
+
+
+### Features
+
+* **plugin:** add languages environment variable to cli ([7bde3ca](https://github.com/ovh-ux/component-rollup-config/commit/7bde3ca))
+* **plugin:** add translations.languages option ([1f3bc83](https://github.com/ovh-ux/component-rollup-config/commit/1f3bc83))
+
+
+
 ## [5.0.3](https://github.com/ovh-ux/component-rollup-config/compare/v5.0.2...v5.0.3) (2019-06-18)
 
 
