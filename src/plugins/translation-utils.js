@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const slash = require('slash');
 
-const languages = [
+const ALL_LANGUAGES = [
   'cs_CZ',
   'de_DE',
   'en_ASIA',
@@ -26,7 +26,7 @@ const languages = [
 
 const normalizePath = p => (_.startsWith(p, '.') ? slash(p) : `./${slash(p)}`);
 
-const injectFallbackFunction = (trads, id, subdirectory, format) => {
+const injectFallbackFunction = (languages, trads, id, subdirectory, format) => {
   let code = 'let p = []; switch($translate.fallbackLanguage()) {';
   languages.forEach((lang) => {
     code += `case '${lang}':`;
@@ -47,7 +47,7 @@ const injectFallbackFunction = (trads, id, subdirectory, format) => {
   return code;
 };
 
-const injectTranslationSwitch = (trads, id, subdirectory, format) => {
+const injectTranslationSwitch = (languages, trads, id, subdirectory, format) => {
   let code = 'switch($translate.use()) {';
 
   languages.forEach((lang) => {
@@ -95,12 +95,12 @@ const injectTranslationSwitch = (trads, id, subdirectory, format) => {
   return code;
 };
 
-const injectTranslationImports = (trads, id, subdirectory, format = 'xml') => `
+const injectTranslationImports = (languages, trads, id, subdirectory, format = 'xml') => `
   let promises = [];
   const useFallback = (path = false) => {
-    ${injectFallbackFunction(trads, id, subdirectory, format)}
+    ${injectFallbackFunction(languages, trads, id, subdirectory, format)}
   };
-  ${injectTranslationSwitch(trads, id, subdirectory, format)}
+  ${injectTranslationSwitch(languages, trads, id, subdirectory, format)}
   promises.forEach(p => asyncLoader.addTranslations(p));
   return $q.all(promises).then(() => $translate.refresh());
 `;
@@ -108,5 +108,5 @@ const injectTranslationImports = (trads, id, subdirectory, format = 'xml') => `
 module.exports = {
   normalizePath,
   injectTranslationImports,
-  languages: _.concat(languages),
+  languages: _.concat(ALL_LANGUAGES),
 };

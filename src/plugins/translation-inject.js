@@ -10,6 +10,7 @@ module.exports = (opts = {}) => {
   const sourcemap = opts.sourcemap !== false;
   const subdirectory = opts.subdirectory || './';
   const filtering = opts.filtering !== false;
+  const languages = Array.isArray(opts.languages) ? opts.languages : utils.languages;
   return {
     name: 'translation-ui-router',
     transform(code, id) {
@@ -27,7 +28,8 @@ module.exports = (opts = {}) => {
             const format = _.get(match, '[1]');
 
             if (_(translations).isArray() && !_(translations).isEmpty()) {
-              const inject = utils.injectTranslationImports(translations, id, subdirectory, format);
+              const inject = utils.injectTranslationImports(languages,
+                translations, id, subdirectory, format);
               magicString.overwrite(start, end, `/* @ngInject */ ($translate, $q, asyncLoader) => { ${inject} }`);
             } else {
               magicString.overwrite(start, end, 'angular.noop');
