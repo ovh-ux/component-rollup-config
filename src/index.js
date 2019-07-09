@@ -6,6 +6,7 @@ const html = require('rollup-plugin-html');
 const image = require('rollup-plugin-img');
 const json = require('rollup-plugin-json');
 const less = require('rollup-plugin-less');
+const LessPluginInlineSvg = require('less-plugin-inline-svg');
 const lessPluginRemcalc = require('less-plugin-remcalc');
 const lessTildeImporter = require('@ovh-ux/rollup-plugin-less-tilde-importer');
 const path = require('path');
@@ -42,6 +43,9 @@ const generateConfig = (opts, pluginsOpts) => Object.assign({
       option: {
         plugins: [
           lessPluginRemcalc,
+          new LessPluginInlineSvg({
+            base64: true,
+          }),
         ],
       },
     }),
